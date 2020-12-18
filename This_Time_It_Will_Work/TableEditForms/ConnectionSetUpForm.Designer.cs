@@ -162,7 +162,6 @@ namespace This_Time_It_Will_Work
             this.Controls.Add(this.depTableComboBox);
             this.Controls.Add(this.BackButton);
             this.Name = "ConnectionSetUpForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConnectionSetUpForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConnectionSetUpForm_FormClosed);
             this.ResumeLayout(false);
