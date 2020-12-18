@@ -86,6 +86,7 @@ namespace This_Time_It_Will_Work
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox1);
             this.Name = "TableDescriptionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TableDescriptionForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TableDescriptionForm_FormClosed);
             this.ResumeLayout(false);

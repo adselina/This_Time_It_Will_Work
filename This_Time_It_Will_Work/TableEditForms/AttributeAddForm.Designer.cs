@@ -219,6 +219,7 @@ namespace This_Time_It_Will_Work
             this.Controls.Add(this.InfoLabel);
             this.Controls.Add(this.buttonBack);
             this.Name = "AttributeAddForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AttributeAddForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AttributeAddForm_FormClosed);
             this.ResumeLayout(false);
