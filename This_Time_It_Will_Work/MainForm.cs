@@ -1,4 +1,5 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using QueryMaker;
+
 namespace This_Time_It_Will_Work
 {
     public partial class MainForm : Form
@@ -16,12 +19,34 @@ namespace This_Time_It_Will_Work
         public MainForm()
         {
             InitializeComponent();
+            currentDB = "user_db";
+            try
+            {
+                DataBase db = new DataBase(currentDB);
+                db.OpenConnection();
+            }
+            catch(MySqlException ex)
+            {
+                currentDB = null;
+            }
+            if (currentDB == null)
+            {
+                buttonChangeDB.Enabled = false;
+                buttonEntries.Enabled = false;
+                buttonQueries.Enabled = false;
+            }
         }
 
         public MainForm(string dbName)
         {
             InitializeComponent();
             currentDB = dbName;
+            if (currentDB == null)
+            {
+                buttonChangeDB.Enabled = false;
+                buttonEntries.Enabled = false;
+                buttonQueries.Enabled = false;
+            }
         }
 
         private void CreateDbButton_Click(object sender, EventArgs e)
@@ -47,9 +72,8 @@ namespace This_Time_It_Will_Work
 
         private void buttonQueries_Click(object sender, EventArgs e)
         {
-            QuerriesForm form = new QuerriesForm(currentDB);
-            form.Show();
-            this.Hide();
+            TableChooserForm queryForm = new TableChooserForm(currentDB);
+            queryForm.ShowDialog();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

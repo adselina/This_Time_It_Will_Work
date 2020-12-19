@@ -14,7 +14,8 @@ namespace This_Time_It_Will_Work
 {
     public partial class EntriesManipulationForm : Form
     {
-        public string currentDB = "vfs";
+        public string currentDB;
+
         public EntriesManipulationForm()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace This_Time_It_Will_Work
         public EntriesManipulationForm(string name)
         {
             InitializeComponent();
-            //currentDB;
+            currentDB = name;
             FillListTables();
             button_delete.Enabled = false;
             button_insert.Enabled = false;
@@ -102,11 +103,11 @@ namespace This_Time_It_Will_Work
 
         private string get_type(string type)
         {
-            if (type.Contains("int"))
+            if (type.Contains("Int"))
                 return "System.Int32";
-            if (type.Contains("text") || type.Contains("var_char"))
+            if (type.Contains("text") || type.Contains("Varchar(255)"))
                 return "System.String";
-            if (type.Contains("date"))
+            if (type.Contains("Date"))
                 return "System.DateTime";
             //if (type.Contains("System.Boolean"))
             //    return "Boolean";
@@ -551,6 +552,8 @@ namespace This_Time_It_Will_Work
                 MessageBox.Show("Ой! Что-то пошло не так!");
             }
         }
+
+        
     }
     
 }

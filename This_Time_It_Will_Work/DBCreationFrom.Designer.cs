@@ -31,14 +31,15 @@ namespace This_Time_It_Will_Work
         {
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonCreate = new System.Windows.Forms.Button();
-            this.DB_Name_TextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(12, 161);
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBack.Location = new System.Drawing.Point(12, 152);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(117, 37);
+            this.buttonBack.Size = new System.Drawing.Size(133, 46);
             this.buttonBack.TabIndex = 1;
             this.buttonBack.Text = "Назад";
             this.buttonBack.UseVisualStyleBackColor = true;
@@ -46,29 +47,33 @@ namespace This_Time_It_Will_Work
             // 
             // buttonCreate
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(305, 161);
+            this.buttonCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCreate.Location = new System.Drawing.Point(293, 152);
             this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(113, 37);
+            this.buttonCreate.Size = new System.Drawing.Size(134, 46);
             this.buttonCreate.TabIndex = 2;
             this.buttonCreate.Text = "Создать базу данных";
             this.buttonCreate.UseVisualStyleBackColor = true;
             this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
-            // DB_Name_TextBox
+            // label1
             // 
-            this.DB_Name_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DB_Name_TextBox.ForeColor = System.Drawing.Color.Black;
-            this.DB_Name_TextBox.Location = new System.Drawing.Point(34, 46);
-            this.DB_Name_TextBox.Name = "DB_Name_TextBox";
-            this.DB_Name_TextBox.Size = new System.Drawing.Size(354, 29);
-            this.DB_Name_TextBox.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(7, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(426, 100);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Внимание! \r\n\r\nПри создании новой базы данных все\r\nимеющиеся данные будут потеряны" +
+    "";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DBCreationFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 210);
-            this.Controls.Add(this.DB_Name_TextBox);
+            this.ClientSize = new System.Drawing.Size(439, 210);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.buttonBack);
             this.Name = "DBCreationFrom";
@@ -84,6 +89,6 @@ namespace This_Time_It_Will_Work
 
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonCreate;
-        private System.Windows.Forms.TextBox DB_Name_TextBox;
+        private System.Windows.Forms.Label label1;
     }
 }

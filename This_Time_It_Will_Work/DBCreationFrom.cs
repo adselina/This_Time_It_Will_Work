@@ -42,14 +42,22 @@ namespace This_Time_It_Will_Work
 
             MySqlConnection con = new MySqlConnection("server=localhost;port=3306;username=root;password=root");
             con.Open();
-            if (currentDB != null)
-            {
-                MySqlCommand com = new MySqlCommand($"DROP DATABASE IF EXISTS {currentDB}", con);
-                com.ExecuteNonQuery();
-            }
-            MySqlCommand command = new MySqlCommand($"CREATE DATABASE IF NOT EXISTS {DB_Name_TextBox.Text}", con);
+            
+            MySqlCommand com = new MySqlCommand($"DROP DATABASE IF EXISTS user_db", con);
+            com.ExecuteNonQuery();
+            
+            MySqlCommand command = new MySqlCommand($"CREATE DATABASE IF NOT EXISTS user_db", con);
             command.ExecuteNonQuery();
-            currentDB = DB_Name_TextBox.Text;
+            currentDB = "user_db";
+
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            string[] names = { "table", "connection", "attribute" };
+            foreach (string t in names)
+            {
+                MySqlCommand del = new MySqlCommand($"DELETE FROM `{t}`", mData.GetConnection());
+                del.ExecuteNonQuery();
+            }
 
             MainForm form = new MainForm(currentDB);
             form.Show();
@@ -58,6 +66,5 @@ namespace This_Time_It_Will_Work
 
         }
 
-        
     }
 }

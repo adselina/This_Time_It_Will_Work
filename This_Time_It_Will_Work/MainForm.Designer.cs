@@ -37,6 +37,7 @@ namespace This_Time_It_Will_Work
             // 
             // CreateDbButton
             // 
+            this.CreateDbButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CreateDbButton.Location = new System.Drawing.Point(86, 138);
             this.CreateDbButton.Name = "CreateDbButton";
             this.CreateDbButton.Size = new System.Drawing.Size(243, 50);
@@ -47,6 +48,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonChangeDB
             // 
+            this.buttonChangeDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonChangeDB.Location = new System.Drawing.Point(86, 194);
             this.buttonChangeDB.Name = "buttonChangeDB";
             this.buttonChangeDB.Size = new System.Drawing.Size(243, 50);
@@ -57,6 +59,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonEntries
             // 
+            this.buttonEntries.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonEntries.Location = new System.Drawing.Point(86, 250);
             this.buttonEntries.Name = "buttonEntries";
             this.buttonEntries.Size = new System.Drawing.Size(243, 50);
@@ -67,6 +70,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonQueries
             // 
+            this.buttonQueries.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonQueries.Location = new System.Drawing.Point(86, 306);
             this.buttonQueries.Name = "buttonQueries";
             this.buttonQueries.Size = new System.Drawing.Size(243, 50);
