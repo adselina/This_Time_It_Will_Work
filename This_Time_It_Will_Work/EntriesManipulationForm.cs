@@ -14,7 +14,7 @@ namespace This_Time_It_Will_Work
 {
     public partial class EntriesManipulationForm : Form
     {
-        public string currentDB;
+        public string currentDB = "vfs";
         public EntriesManipulationForm()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace This_Time_It_Will_Work
         public EntriesManipulationForm(string name)
         {
             InitializeComponent();
-            currentDB = name;
+            //currentDB;
             FillListTables();
             button_delete.Enabled = false;
             button_insert.Enabled = false;
@@ -88,7 +88,11 @@ namespace This_Time_It_Will_Work
 
                 dataTable.Columns.Add(column);
                 checkedList_atribytes.Items.Add(reader.GetValue(0).ToString());
-                row[column.ColumnName] = DBNull.Value.Equals(column.DataType);
+                try { row[column.ColumnName] = DBNull.Value.Equals(column.DataType); }
+                catch
+                {
+                    row[column.ColumnName] = Convert.ToDateTime("1999-01-01");
+                }
             }
 
             dataTable.Rows.Add(row);
@@ -100,12 +104,12 @@ namespace This_Time_It_Will_Work
         {
             if (type.Contains("int"))
                 return "System.Int32";
-            if (type.Contains("text") || type.Contains("varchar"))
+            if (type.Contains("text") || type.Contains("var_char"))
                 return "System.String";
             if (type.Contains("date"))
                 return "System.DateTime";
-            if (type.Contains("System.Boolean"))
-                return "Boolean";
+            //if (type.Contains("System.Boolean"))
+            //    return "Boolean";
             return "";
 
         }
@@ -275,8 +279,6 @@ namespace This_Time_It_Will_Work
                 InputKeyShow();
             }
         }
-
-
         public void GetKeyAttrib()
         {
             DataBase db;
@@ -298,6 +300,7 @@ namespace This_Time_It_Will_Work
         public string attr_name = "";
         private void Insert()
         {
+            GetKeyAttrib();
             string query = $"SELECT attribute.Attribute_Name, attribute.Is_Key FROM `attribute` INNER JOIN `table` ON (`attribute`.Table_ID = `table`.Table_ID) WHERE `table`.Name = \"{get_table.Text}\"";
             DataBase db = new DataBase("prime_db");
             MySqlCommand command = new MySqlCommand(query, db.GetConnection());
@@ -312,16 +315,20 @@ namespace This_Time_It_Will_Work
             }
             attr_name = attr_name.Trim(',');
             db.CloseConnection();
-
             db = new DataBase(currentDB);
 
             try
             {
                 db.OpenConnection();
                 string values = "";
+                string temp;
                 for (int i = 0; i < Optional_table.Columns.Count; i++)
                 {
-                    values += Optional_table.Rows[0].Cells[i].Value.ToString() + ",";
+                    temp = Optional_table.Rows[0].Cells[i].Value.ToString();
+                    if (Int32.TryParse(temp, out int temp2) == true)
+                        values += temp2.ToString() + ",";
+                    else
+                        values += $"\"{temp}\",";
                 }
                 values = values.Trim(',');
                 query = $"INSERT INTO `{get_table.Text}` ({attr_name}) VALUES ({values});";
@@ -439,7 +446,8 @@ namespace This_Time_It_Will_Work
             DataRow row;
             row = dataTable.NewRow();
             for (int i = 0; i < dataTable.Columns.Count; i++)
-                row[dataTable.Columns[i].ColumnName] = DBNull.Value.Equals(dataTable.Columns[i].DataType);
+                try { row[dataTable.Columns[i].ColumnName] = DBNull.Value.Equals(dataTable.Columns[i].DataType); }
+                catch { row[dataTable.Columns[i].ColumnName] = Convert.ToDateTime("2001-06-05"); }
             dataTable.Rows.Add(row);
             Optional_table.DataSource = dataTable;
         }
