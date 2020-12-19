@@ -122,7 +122,7 @@ namespace This_Time_It_Will_Work
             if (type.Contains("Int"))
                 return "System.Int32";
             else if (type.Contains("Date"))
-                return "System.String";
+                return "System.DateTime";
             else 
                 return "System.String";
             
@@ -334,7 +334,7 @@ namespace This_Time_It_Will_Work
 
             while (reader.Read())
             {
-                attr_name += "`"  + reader.GetValue(0).ToString() + "`,";
+                attr_name += "`" + reader.GetValue(0).ToString() + "`,";
             }
             attr_name = attr_name.Trim(',');
             db.CloseConnection();
@@ -350,16 +350,12 @@ namespace This_Time_It_Will_Work
                 {
                     temp = Optional_table.Rows[0].Cells[i].Value.ToString();
                     if (dataTable.Columns[i].DataType.ToString() == "System.DateTime")
-                        values += $"\"{temp}\", ";
+                        values += $"\"{DateTime.Parse(temp).ToString("d")}\","; 
                     else
-                        if (dataTable.Columns[i].DataType.ToString() == "System.String")
-                        values += $"\"{temp}\", ";
-                    else
-                        values += temp.ToString() + ", ";
+                        values += temp.ToString() + ",";
                 }
-                values = values.Trim();
                 values = values.Trim(',');
-                query = $"INSERT INTO `{get_table.Text}` ({attr_name}) VALUES ({values})";
+                query = $"INSERT INTO `{get_table.Text}` ({attr_name}) VALUES ({values});";
                 command = new MySqlCommand(query, db.GetConnection());
 
                 if (command.ExecuteNonQuery() == 1)
@@ -410,12 +406,9 @@ namespace This_Time_It_Will_Work
                 {
                     temp = Optional_table[i, 1].Value.ToString();
                     if (dataTable.Columns[i].DataType.ToString() == "System.DateTime")
-                        temp = $"\"{temp}\"";
-
-                    if (dataTable.Columns[i].DataType.ToString() == "System.String")
-                        temp = $"\"{temp}\"";
-
-                        values += $"`{dataTable.Columns[i].ColumnName.Trim('*')}`={temp},";
+                        temp = $"\"{DateTime.Parse(temp).ToString("d")}\",";
+                    
+                    values += $"`{dataTable.Columns[i].ColumnName.Trim('*')}`={temp}";
                 }
                 values = values.Trim(',');
                 
