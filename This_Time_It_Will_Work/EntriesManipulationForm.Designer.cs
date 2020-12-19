@@ -160,11 +160,11 @@
             // 
             // button_do
             // 
-            this.button_do.Location = new System.Drawing.Point(750, 576);
+            this.button_do.Location = new System.Drawing.Point(737, 478);
             this.button_do.Name = "button_do";
-            this.button_do.Size = new System.Drawing.Size(65, 38);
+            this.button_do.Size = new System.Drawing.Size(78, 136);
             this.button_do.TabIndex = 18;
-            this.button_do.Text = "go";
+            this.button_do.Text = "Далее";
             this.button_do.UseVisualStyleBackColor = true;
             this.button_do.Click += new System.EventHandler(this.button_do_Click);
             // 
