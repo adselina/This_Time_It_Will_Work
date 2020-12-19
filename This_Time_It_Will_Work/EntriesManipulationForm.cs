@@ -64,10 +64,7 @@ namespace This_Time_It_Will_Work
 
                 while (reader.Read())
                 {
-
                     get_table.Items.Add(reader.GetValue(0).ToString());
-
-
                 }
                 db.CloseConnection();
             }
@@ -394,7 +391,7 @@ namespace This_Time_It_Will_Work
             MySqlCommand command;
             
             string query;
-
+            
             if (update_step == 0)
             {
                 ShowOptionalTable(key_value, "update");
@@ -403,22 +400,28 @@ namespace This_Time_It_Will_Work
             else
             {
                 db = new DataBase(currentDB);
-                string name_values = "";
+                string values = "";
+                string temp="";
+                for (int i = 0; i < dataTable.Columns.Count; i++)
+                {
+                    temp = Optional_table[i, 1].Value.ToString();
+                    if (dataTable.Columns[i].DataType.ToString() == "System.DateTime")
+                        temp = $"\"{DateTime.Parse(temp).ToString("d")}\",";
+                    
+                    values += $"`{dataTable.Columns[i].ColumnName.Trim('*')}`={temp}";
+                }
+                values = values.Trim(',');
                 
-                for(int i = 0; i < dataTable.Columns.Count; i++)
-                    name_values +=  $"`{dataTable.Columns[i].ColumnName.Trim('*')}`={Optional_table[i,1].Value}," ;
-                
-                name_values = name_values.Trim(',');
-                
-                query = $"UPDATE `{get_table.Text}` SET {name_values} WHERE {attr_name} = {key_value}";
+                query = $"UPDATE `{get_table.Text}` SET {values} WHERE {attr_name} = {key_value}";
                 db.OpenConnection();
                 command = new MySqlCommand(query, db.GetConnection());
                 if (command.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Запись успешно обновлена");
-                    dataTable.Rows[0].Delete();
+                    dataTable.Rows.Clear();
                     Optional_table.DataSource = dataTable;
                     InputKeyShow();
+                    update_step++;
                 }
                 else
                 {
@@ -444,14 +447,15 @@ namespace This_Time_It_Will_Work
             }
             else
             {
-                db = new DataBase("currentDB");
+                db = new DataBase(currentDB);
                 query = $"DELETE FROM {get_table.Text} WHERE {attr_name} = {key_value}";
                 db.OpenConnection();
                 command = new MySqlCommand(query, db.GetConnection());
                 if (command.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Запись успешно удалена");
-                    dataTable.Rows[0].Delete();
+                    if (dataTable.Rows.Count != 0)
+                        dataTable.Rows[0].Delete();
                     Optional_table.DataSource = dataTable;
                     InputKeyShow();
                 }
