@@ -19,9 +19,15 @@ namespace This_Time_It_Will_Work
         public EntriesManipulationForm()
         {
             InitializeComponent();
+            
+        }
+        public void Optional_table_DataError(object sender, DataGridViewDataErrorEventArgs anError)
+        {
+            MessageBox.Show("Неверный формат данных!");
+            anError.ThrowException = false;
         }
         public EntriesManipulationForm(string name)
-        {
+        { 
             InitializeComponent();
             currentDB = name;
             FillListTables();
@@ -31,6 +37,7 @@ namespace This_Time_It_Will_Work
             button_update.Enabled = false;
             button_do.Enabled = false;
             InputKeyHide();
+            Optional_table.DataError += new DataGridViewDataErrorEventHandler(Optional_table_DataError);
         }
         private void buttonBack_Click(object sender, EventArgs e)
         {
@@ -47,16 +54,28 @@ namespace This_Time_It_Will_Work
         private void FillListTables()
         {
             get_table.Items.Clear();
-            DataBase db = new DataBase("prime_db");
-            db.OpenConnection();
-            MySqlCommand command = new MySqlCommand("SELECT Name FROM prime_db.table", db.GetConnection());
-            MySqlDataReader reader = command.ExecuteReader();
 
-            while (reader.Read())
+            try
             {
-                get_table.Items.Add(reader.GetValue(0).ToString());
+                DataBase db = new DataBase("prime_db");
+                db.OpenConnection();
+                MySqlCommand command = new MySqlCommand("SELECT Name FROM prime_db.table", db.GetConnection());
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    get_table.Items.Add(reader.GetValue(0).ToString());
+
+
+                }
+                db.CloseConnection();
             }
-            db.CloseConnection();
+            catch
+            {
+
+            }
+            
         }
 
         public DataTable dataTable = new DataTable();
@@ -105,28 +124,34 @@ namespace This_Time_It_Will_Work
         {
             if (type.Contains("Int"))
                 return "System.Int32";
-            if (type.Contains("text") || type.Contains("Varchar(255)"))
-                return "System.String";
-            if (type.Contains("Date"))
+            else if (type.Contains("Date"))
                 return "System.DateTime";
-            //if (type.Contains("System.Boolean"))
-            //    return "Boolean";
-            return "";
+            else 
+                return "System.String";
+            
 
         }
         //подключение к таблице
         private DataTable GetTable(DataBase db, string table_name)
         {
-            db.OpenConnection();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            DataTable table = new DataTable();
+            try
+            {
+                db.OpenConnection();
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                DataTable table = new DataTable();
 
-            string query_select_id = $"SELECT * FROM `{table_name}`";
-            MySqlCommand command = new MySqlCommand(query_select_id, db.GetConnection());
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
-            db.CloseConnection();
-            return table;
+                string query_select_id = $"SELECT * FROM `{table_name}`";
+                MySqlCommand command = new MySqlCommand(query_select_id, db.GetConnection());
+                adapter.SelectCommand = command;
+                adapter.Fill(table);
+                db.CloseConnection();
+                return table;
+            }
+            catch
+            {
+                MessageBox.Show("Данной таблицы не существует");
+                return null;
+            }
         }
 
         //заполнение Box именами таблиц
@@ -143,9 +168,9 @@ namespace This_Time_It_Will_Work
             button_update.Enabled = true;
             button_do.Enabled = true;
 
-            button_insert.BackColor = Color.LightGray;
-            button_delete.BackColor = Color.LightGray;
-            button_update.BackColor = Color.LightGray;
+            button_insert.BackColor = Color.FromArgb(227, 227, 227);
+            button_delete.BackColor = Color.FromArgb(227, 227, 227);
+            button_update.BackColor = Color.FromArgb(227, 227, 227);
             InputKeyHide();
             delete_step = 0;
             update_step = 0;
@@ -216,7 +241,7 @@ namespace This_Time_It_Will_Work
             Optional_table.Enabled = true;
             if (button_insert.BackColor == Color.LightBlue)
             {
-                button_insert.BackColor = Color.LightGray;
+                button_insert.BackColor = Color.FromArgb(227, 227, 227); 
                 Optional_table.Enabled = false;
                 button_do.Enabled = false;
                 dataTable.Rows.Clear();
@@ -228,8 +253,8 @@ namespace This_Time_It_Will_Work
                 Optional_table.DataSource = dataTable;
                 button_do.Enabled = true;
                 button_insert.BackColor = Color.LightBlue;
-                button_delete.BackColor = Color.LightGray;
-                button_update.BackColor = Color.LightGray;
+                button_delete.BackColor = Color.FromArgb(227, 227, 227); 
+                button_update.BackColor = Color.FromArgb(227, 227, 227); 
                 AddDefaultRow();
             }
         }
@@ -239,7 +264,7 @@ namespace This_Time_It_Will_Work
             Optional_table.Enabled = true;
             if (button_delete.BackColor == Color.LightBlue)
             {
-                button_delete.BackColor = Color.LightGray;
+                button_delete.BackColor = Color.FromArgb(227, 227, 227); 
                 Optional_table.Enabled = false;
                 button_do.Enabled = false;
                 InputKeyHide();
@@ -249,9 +274,9 @@ namespace This_Time_It_Will_Work
                 delete_step = 0;
                 Optional_table.DataSource = dataTable;
                 button_do.Enabled = true;
-                button_insert.BackColor = Color.LightGray;
+                button_insert.BackColor = Color.FromArgb(227, 227, 227); 
                 button_delete.BackColor = Color.LightBlue;
-                button_update.BackColor = Color.LightGray;
+                button_update.BackColor = Color.FromArgb(227, 227, 227); 
                 InputKeyShow();  
             }
         }
@@ -263,7 +288,7 @@ namespace This_Time_It_Will_Work
             Optional_table.Enabled = true;
             if (button_update.BackColor == Color.LightBlue)
             {
-                button_update.BackColor = Color.LightGray;
+                button_update.BackColor = Color.FromArgb(227, 227, 227); 
                 Optional_table.Enabled = false;
                 button_do.Enabled = false;
                 InputKeyHide();
@@ -273,8 +298,8 @@ namespace This_Time_It_Will_Work
                 update_step = 0;
                 Optional_table.DataSource = dataTable;
                 button_do.Enabled = true;
-                button_insert.BackColor = Color.LightGray;
-                button_delete.BackColor = Color.LightGray;
+                button_insert.BackColor = Color.FromArgb(227, 227, 227); 
+                button_delete.BackColor = Color.FromArgb(227, 227, 227); 
                 button_update.BackColor = Color.LightBlue;
                
                 InputKeyShow();
@@ -301,14 +326,14 @@ namespace This_Time_It_Will_Work
         public string attr_name = "";
         private void Insert()
         {
-            GetKeyAttrib();
+            //char kavichka = '"';
             string query = $"SELECT attribute.Attribute_Name, attribute.Is_Key FROM `attribute` INNER JOIN `table` ON (`attribute`.Table_ID = `table`.Table_ID) WHERE `table`.Name = \"{get_table.Text}\"";
-            DataBase db = new DataBase("prime_db");
+            DataBase db= new DataBase("prime_db");
             MySqlCommand command = new MySqlCommand(query, db.GetConnection());
             db.OpenConnection();
             MySqlDataReader reader = command.ExecuteReader();
 
-            string attr_name = "";
+            attr_name = "";
 
             while (reader.Read())
             {
@@ -320,16 +345,17 @@ namespace This_Time_It_Will_Work
 
             try
             {
+
                 db.OpenConnection();
                 string values = "";
                 string temp;
                 for (int i = 0; i < Optional_table.Columns.Count; i++)
                 {
                     temp = Optional_table.Rows[0].Cells[i].Value.ToString();
-                    if (Int32.TryParse(temp, out int temp2) == true)
-                        values += temp2.ToString() + ",";
+                    if (dataTable.Columns[i].DataType.ToString() == "System.DateTime")
+                        values += $"\"{DateTime.Parse(temp).ToString("d")}\","; 
                     else
-                        values += $"\"{temp}\",";
+                        values += temp.ToString() + ",";
                 }
                 values = values.Trim(',');
                 query = $"INSERT INTO `{get_table.Text}` ({attr_name}) VALUES ({values});";
@@ -352,7 +378,7 @@ namespace This_Time_It_Will_Work
             }
             catch (MySqlException)
             {
-                MessageBox.Show("ERROR: Данное значение ключевого атрибута уже существует в таблице. Введите уникальное значение.");
+                MessageBox.Show("Данное значение ключевого атрибута уже существует в таблице. Введите уникальное значение.");
             }
             catch (Exception ex)
             {
@@ -396,7 +422,7 @@ namespace This_Time_It_Will_Work
                 }
                 else
                 {
-                    MessageBox.Show("АААААААА");
+                    MessageBox.Show("");
                     dataTable.Rows.Clear();
                     InputKeyShow();
                 }
