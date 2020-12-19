@@ -14,7 +14,8 @@ namespace This_Time_It_Will_Work
 {
     public partial class EntriesManipulationForm : Form
     {
-        public string currentDB = "vfs";
+        public string currentDB;
+
         public EntriesManipulationForm()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace This_Time_It_Will_Work
         public EntriesManipulationForm(string name)
         {
             InitializeComponent();
-            //currentDB;
+            currentDB = name;
             FillListTables();
             button_delete.Enabled = false;
             button_insert.Enabled = false;
@@ -551,6 +552,8 @@ namespace This_Time_It_Will_Work
                 MessageBox.Show("Ой! Что-то пошло не так!");
             }
         }
+
+        
     }
     
 }
