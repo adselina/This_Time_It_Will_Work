@@ -346,13 +346,21 @@ namespace This_Time_It_Will_Work
                 db.OpenConnection();
                 string values = "";
                 string temp;
+                string temp2;
+                string[] data = new string[2];
                 for (int i = 0; i < Optional_table.Columns.Count; i++)
                 {
                     temp = Optional_table.Rows[0].Cells[i].Value.ToString();
                     if (dataTable.Columns[i].DataType.ToString() == "System.DateTime")
-                        values += $"\"{DateTime.Parse(temp).ToString("d")}\","; 
-                    else
-                        values += temp.ToString() + ",";
+                    {//values += $"\"{DateTime.Parse(temp).ToString("d")}\","; 
+                        temp = $"{temp.Substring(0, 10)}";
+                        data = temp.Split('.');
+                        temp2 = data[2];
+                        data[2] = data[0];
+                        data[0] = temp2;
+                        temp = $"\"{data[0]}.{data[1]}.{data[2]}\"";
+                    }
+                    values += $"{temp},";
                 }
                 values = values.Trim(',');
                 query = $"INSERT INTO `{get_table.Text}` ({attr_name}) VALUES ({values});";
@@ -402,13 +410,23 @@ namespace This_Time_It_Will_Work
                 db = new DataBase(currentDB);
                 string values = "";
                 string temp="";
+                string temp2;
+                string[] data = new string[2];
                 for (int i = 0; i < dataTable.Columns.Count; i++)
                 {
                     temp = Optional_table[i, 1].Value.ToString();
-                    if (dataTable.Columns[i].DataType.ToString() == "System.DateTime")
-                        temp = $"\"{DateTime.Parse(temp).ToString("d")}\",";
                     
-                    values += $"`{dataTable.Columns[i].ColumnName.Trim('*')}`={temp}";
+                    if (dataTable.Columns[i].DataType.ToString() == "System.DateTime")
+                    {
+                        temp = $"{temp.Substring(0, 10)}";
+                        data = temp.Split('.');
+                        temp2 = data[2];
+                        data[2] = data[0];
+                        data[0] = temp2;
+                        temp = $"\"{data[0]}.{data[1]}.{data[2]}\"";
+                    }
+
+                    values += $"`{dataTable.Columns[i].ColumnName.Trim('*')}`={temp},";
                 }
                 values = values.Trim(',');
                 
