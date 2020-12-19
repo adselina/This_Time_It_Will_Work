@@ -50,23 +50,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributeAddForm.cs">
+    <Compile Include="QueryFiles\Classes\Column.cs" />
+    <Compile Include="QueryFiles\Classes\Condition.cs" />
+    <Compile Include="QueryFiles\Classes\Relation.cs" />
+    <Compile Include="QueryFiles\Forms\ColumnConditionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AttributeAddForm.Designer.cs">
+    <Compile Include="QueryFiles\Forms\ColumnConditionsForm.Designer.cs">
+      <DependentUpon>ColumnConditionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QueryFiles\Forms\JoinQueryResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryFiles\Forms\JoinQueryResultForm.Designer.cs">
+      <DependentUpon>JoinQueryResultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QueryFiles\Forms\TableChooserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryFiles\Forms\TableChooserForm.Designer.cs">
+      <DependentUpon>TableChooserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableEditForms\AttributeAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableEditForms\AttributeAddForm.Designer.cs">
       <DependentUpon>AttributeAddForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConnectionSetUpForm.cs">
+    <Compile Include="TableEditForms\ConnectionSetUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConnectionSetUpForm.Designer.cs">
+    <Compile Include="TableEditForms\ConnectionSetUpForm.Designer.cs">
       <DependentUpon>ConnectionSetUpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase.cs" />
-    <Compile Include="DBChangeForm.cs">
+    <Compile Include="TableEditForms\DBChangeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DBChangeForm.Designer.cs">
+    <Compile Include="TableEditForms\DBChangeForm.Designer.cs">
       <DependentUpon>DBChangeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DBCreationFrom.cs">
@@ -101,19 +122,28 @@
     <Compile Include="QuerriesForm.Designer.cs">
       <DependentUpon>QuerriesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TableDescriptionForm.cs">
+    <Compile Include="TableEditForms\TableDescriptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TableDescriptionForm.Designer.cs">
+    <Compile Include="TableEditForms\TableDescriptionForm.Designer.cs">
       <DependentUpon>TableDescriptionForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AttributeAddForm.resx">
+    <EmbeddedResource Include="QueryFiles\Forms\ColumnConditionsForm.resx">
+      <DependentUpon>ColumnConditionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryFiles\Forms\JoinQueryResultForm.resx">
+      <DependentUpon>JoinQueryResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryFiles\Forms\TableChooserForm.resx">
+      <DependentUpon>TableChooserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableEditForms\AttributeAddForm.resx">
       <DependentUpon>AttributeAddForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConnectionSetUpForm.resx">
+    <EmbeddedResource Include="TableEditForms\ConnectionSetUpForm.resx">
       <DependentUpon>ConnectionSetUpForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DBChangeForm.resx">
+    <EmbeddedResource Include="TableEditForms\DBChangeForm.resx">
       <DependentUpon>DBChangeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DBCreationFrom.resx">
@@ -137,7 +167,7 @@
     <EmbeddedResource Include="QuerriesForm.resx">
       <DependentUpon>QuerriesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TableDescriptionForm.resx">
+    <EmbeddedResource Include="TableEditForms\TableDescriptionForm.resx">
       <DependentUpon>TableDescriptionForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

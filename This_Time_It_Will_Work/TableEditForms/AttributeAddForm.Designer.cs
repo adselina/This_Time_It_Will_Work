@@ -48,6 +48,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonBack
             // 
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonBack.Location = new System.Drawing.Point(12, 397);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(127, 41);
@@ -68,15 +69,17 @@ namespace This_Time_It_Will_Work
             // 
             // AttrNametextBox
             // 
+            this.AttrNametextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AttrNametextBox.Location = new System.Drawing.Point(329, 50);
             this.AttrNametextBox.Name = "AttrNametextBox";
-            this.AttrNametextBox.Size = new System.Drawing.Size(293, 20);
+            this.AttrNametextBox.Size = new System.Drawing.Size(293, 22);
             this.AttrNametextBox.TabIndex = 2;
             this.AttrNametextBox.TextChanged += new System.EventHandler(this.AttrNametextBox_TextChanged);
             this.AttrNametextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttrNametextBox_KeyPress);
             // 
             // TypescomboBox
             // 
+            this.TypescomboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TypescomboBox.FormattingEnabled = true;
             this.TypescomboBox.Items.AddRange(new object[] {
             "Varchar(255)",
@@ -84,20 +87,22 @@ namespace This_Time_It_Will_Work
             "Date"});
             this.TypescomboBox.Location = new System.Drawing.Point(329, 89);
             this.TypescomboBox.Name = "TypescomboBox";
-            this.TypescomboBox.Size = new System.Drawing.Size(293, 21);
+            this.TypescomboBox.Size = new System.Drawing.Size(293, 24);
             this.TypescomboBox.TabIndex = 3;
             this.TypescomboBox.TextChanged += new System.EventHandler(this.TypescomboBox_TextChanged);
             this.TypescomboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TypescomboBox_KeyPress);
             // 
             // StartValueTextBox
             // 
+            this.StartValueTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.StartValueTextBox.Location = new System.Drawing.Point(329, 130);
             this.StartValueTextBox.Name = "StartValueTextBox";
-            this.StartValueTextBox.Size = new System.Drawing.Size(293, 20);
+            this.StartValueTextBox.Size = new System.Drawing.Size(293, 22);
             this.StartValueTextBox.TabIndex = 4;
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.Location = new System.Drawing.Point(258, 238);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(445, 96);
@@ -214,6 +219,7 @@ namespace This_Time_It_Will_Work
             this.Controls.Add(this.InfoLabel);
             this.Controls.Add(this.buttonBack);
             this.Name = "AttributeAddForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AttributeAddForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AttributeAddForm_FormClosed);
             this.ResumeLayout(false);

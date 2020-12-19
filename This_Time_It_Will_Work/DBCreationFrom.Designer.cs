@@ -60,11 +60,13 @@ namespace This_Time_It_Will_Work
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(7, 42);
+            this.label1.Location = new System.Drawing.Point(7, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(426, 75);
+            this.label1.Size = new System.Drawing.Size(426, 100);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Внимание! \r\nПри создании новой базы данных все\r\nимеющиеся данные будут потеряны";
+            this.label1.Text = "Внимание! \r\n\r\nПри создании новой базы данных все\r\nимеющиеся данные будут потеряны" +
+    "";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DBCreationFrom
             // 

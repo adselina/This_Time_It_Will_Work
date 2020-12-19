@@ -43,6 +43,7 @@ namespace This_Time_It_Will_Work
             // 
             // BackButton
             // 
+            this.BackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.BackButton.Location = new System.Drawing.Point(13, 397);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(130, 41);
@@ -53,44 +54,51 @@ namespace This_Time_It_Will_Work
             // 
             // depTableComboBox
             // 
+            this.depTableComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.depTableComboBox.FormattingEnabled = true;
             this.depTableComboBox.Location = new System.Drawing.Point(13, 39);
             this.depTableComboBox.Name = "depTableComboBox";
-            this.depTableComboBox.Size = new System.Drawing.Size(286, 21);
+            this.depTableComboBox.Size = new System.Drawing.Size(286, 24);
             this.depTableComboBox.TabIndex = 1;
             this.depTableComboBox.TextChanged += new System.EventHandler(this.depTableComboBox_TextChanged);
             this.depTableComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.depTableComboBox_KeyPress);
             // 
             // refTableComboBox
             // 
+            this.refTableComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.refTableComboBox.FormattingEnabled = true;
             this.refTableComboBox.Location = new System.Drawing.Point(502, 39);
             this.refTableComboBox.Name = "refTableComboBox";
-            this.refTableComboBox.Size = new System.Drawing.Size(290, 21);
+            this.refTableComboBox.Size = new System.Drawing.Size(290, 24);
             this.refTableComboBox.TabIndex = 2;
             this.refTableComboBox.TextChanged += new System.EventHandler(this.refTableComboBox_TextChanged);
             this.refTableComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.refTableComboBox_KeyPress);
             // 
             // depAttrListBox
             // 
+            this.depAttrListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.depAttrListBox.FormattingEnabled = true;
+            this.depAttrListBox.ItemHeight = 16;
             this.depAttrListBox.Location = new System.Drawing.Point(13, 66);
             this.depAttrListBox.Name = "depAttrListBox";
-            this.depAttrListBox.Size = new System.Drawing.Size(286, 199);
+            this.depAttrListBox.Size = new System.Drawing.Size(286, 196);
             this.depAttrListBox.TabIndex = 3;
             this.depAttrListBox.SelectedIndexChanged += new System.EventHandler(this.depAttrListBox_SelectedIndexChanged);
             // 
             // refAttrListBox
             // 
+            this.refAttrListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.refAttrListBox.FormattingEnabled = true;
+            this.refAttrListBox.ItemHeight = 16;
             this.refAttrListBox.Location = new System.Drawing.Point(502, 66);
             this.refAttrListBox.Name = "refAttrListBox";
-            this.refAttrListBox.Size = new System.Drawing.Size(290, 199);
+            this.refAttrListBox.Size = new System.Drawing.Size(290, 196);
             this.refAttrListBox.TabIndex = 4;
             this.refAttrListBox.SelectedIndexChanged += new System.EventHandler(this.refAttrListBox_SelectedIndexChanged);
             // 
             // CreateConnectionButton
             // 
+            this.CreateConnectionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CreateConnectionButton.Location = new System.Drawing.Point(254, 392);
             this.CreateConnectionButton.Name = "CreateConnectionButton";
             this.CreateConnectionButton.Size = new System.Drawing.Size(292, 46);
@@ -101,6 +109,7 @@ namespace This_Time_It_Will_Work
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.Location = new System.Drawing.Point(171, 290);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(462, 96);
@@ -153,6 +162,7 @@ namespace This_Time_It_Will_Work
             this.Controls.Add(this.depTableComboBox);
             this.Controls.Add(this.BackButton);
             this.Name = "ConnectionSetUpForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConnectionSetUpForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConnectionSetUpForm_FormClosed);
             this.ResumeLayout(false);

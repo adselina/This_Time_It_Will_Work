@@ -91,7 +91,7 @@ namespace This_Time_It_Will_Work
 
             try
             {
-                altCom = new MySqlCommand($"ALTER TABLE `{tableName}` DROP COLUMN `ID`", userDB.GetConnection());
+                altCom = new MySqlCommand($"ALTER TABLE `{tableName}` DROP COLUMN `I_D`", userDB.GetConnection());
                 altCom.ExecuteNonQuery();
             }
             catch (MySqlException ex)
@@ -99,6 +99,38 @@ namespace This_Time_It_Will_Work
                 //Игнорируем, если удаление уже производилось
             }
             #endregion
+
+            if (strValue != "")
+            {
+                try
+                {
+                    userDB.OpenConnection();
+                    switch (type)
+                    {
+                        case ("Int"):
+                            {
+                                MySqlCommand defCom = new MySqlCommand($"ALTER TABLE `{tableName}` ALTER COLUMN `{attrName}` SET DEFAULT {strValue} ", userDB.GetConnection());
+                                defCom.ExecuteNonQuery();
+                                break;
+                            }
+                        default:
+                            {
+                                MySqlCommand defCom = new MySqlCommand($"ALTER TABLE `{tableName}` ALTER COLUMN `{attrName}` SET DEFAULT '{strValue}' ", userDB.GetConnection());
+                                defCom.ExecuteNonQuery();
+                                break;
+                            }
+                    }
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"Значение по умолчанию введено некорректно. Атрибут {attrName} добавлен без значения по умолчанию.");
+                    DBChangeForm tform = new DBChangeForm(currentDB, tableName);
+                    tform.Show();
+                    this.Hide();
+                    return;
+                }
+            }
 
             DBChangeForm form = new DBChangeForm(currentDB, tableName);
             form.Show();
@@ -150,7 +182,7 @@ namespace This_Time_It_Will_Work
         private void CheckAttrParams()
         {
             List<string> attrs = GetAllAttrs();
-            if (AttrNametextBox.Text == "" || attrs.Contains(AttrNametextBox.Text) || TypescomboBox.Text == "") CreateAttrButton.Enabled = false;
+            if (AttrNametextBox.Text == "" || attrs.Contains(AttrNametextBox.Text) || TypescomboBox.Text == "" || AttrNametextBox.Text == "i_d") CreateAttrButton.Enabled = false;
             else CreateAttrButton.Enabled = true;
         }
 

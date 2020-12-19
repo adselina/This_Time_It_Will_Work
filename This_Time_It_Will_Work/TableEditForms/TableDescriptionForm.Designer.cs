@@ -37,6 +37,7 @@ namespace This_Time_It_Will_Work
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.Location = new System.Drawing.Point(12, 41);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(493, 218);
@@ -55,6 +56,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonCreateTable
             // 
+            this.buttonCreateTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonCreateTable.Location = new System.Drawing.Point(321, 265);
             this.buttonCreateTable.Name = "buttonCreateTable";
             this.buttonCreateTable.Size = new System.Drawing.Size(184, 51);
@@ -65,6 +67,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonCancel
             // 
+            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonCancel.Location = new System.Drawing.Point(13, 265);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(175, 50);
@@ -83,6 +86,7 @@ namespace This_Time_It_Will_Work
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox1);
             this.Name = "TableDescriptionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TableDescriptionForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TableDescriptionForm_FormClosed);
             this.ResumeLayout(false);
