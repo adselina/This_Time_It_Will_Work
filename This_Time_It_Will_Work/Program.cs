@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using QueryMaker;
+
 namespace This_Time_It_Will_Work
 {
     static class Program
@@ -16,7 +18,7 @@ namespace This_Time_It_Will_Work
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new TableChooserForm());
         }
     }
 }
