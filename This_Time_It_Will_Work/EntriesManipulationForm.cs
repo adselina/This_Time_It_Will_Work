@@ -31,6 +31,7 @@ namespace This_Time_It_Will_Work
             InitializeComponent();
             currentDB = name;
             FillListTables();
+            dataGridView.Enabled = false;
             button_delete.Enabled = false;
             button_insert.Enabled = false;
             button_select.Enabled = false;
