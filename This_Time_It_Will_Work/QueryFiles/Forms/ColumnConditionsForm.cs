@@ -118,18 +118,20 @@ namespace QueryMaker
         private void OperatorsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (OperatorsComboBox.SelectedItem != null)
+            {
                 AddConditionButton.Enabled = true;
-
-            string op = OperatorsComboBox.SelectedItem.ToString();
-            if (op == "IS NULL" || op == "IS NOT NULL")
-            {
-                DateValueMaskedTextBox.Clear();
-                ValueTextBox.Clear();
-                DateValueMaskedTextBox.Enabled = false;
-                ValueTextBox.Enabled = false;
-            } else
-            {
-                SwitchTextBoxes(IsDate(GetColumnType()));
+                    string op = OperatorsComboBox.SelectedItem.ToString();
+                if (op == "IS NULL" || op == "IS NOT NULL")
+                {
+                    DateValueMaskedTextBox.Clear();
+                    ValueTextBox.Clear();
+                    DateValueMaskedTextBox.Enabled = false;
+                    ValueTextBox.Enabled = false;
+                }
+                else
+                {
+                    SwitchTextBoxes(IsDate(GetColumnType()));
+                }
             }
         }
 
