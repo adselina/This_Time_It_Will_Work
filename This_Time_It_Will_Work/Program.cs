@@ -18,7 +18,7 @@ namespace This_Time_It_Will_Work
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TableChooserForm());
+            Application.Run(new MainForm());
         }
     }
 }
