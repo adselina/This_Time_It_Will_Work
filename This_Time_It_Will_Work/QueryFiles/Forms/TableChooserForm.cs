@@ -69,19 +69,23 @@ namespace QueryMaker
 
         private void TablesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AllConnectedTablesListBox.Items.Clear();
-            ChosenConnectedTablesListBox.Items.Clear();
-            AllColumnsListBox.Items.Clear();
+            if (TablesComboBox.SelectedItem != null)
+            {
+                AllConnectedTablesListBox.Items.Clear();
+                ChosenConnectedTablesListBox.Items.Clear();
+                AllColumnsListBox.Items.Clear();
 
-            FillAllConnectedTablesListBox();
-            FillAllColumnsListBox();
+                FillAllConnectedTablesListBox();
+                FillAllColumnsListBox();
 
-            ConnectedTablesGroupBox.Enabled = true;
-            ColumnsGroupBox.Enabled = true;
-            GoButton.Enabled = true;
+                ConnectedTablesGroupBox.Enabled = true;
+                ColumnsGroupBox.Enabled = true;
+                GoButton.Enabled = true;
 
-            SetConnectedTablesModules();
-            SetColumnModules();
+                SetConnectedTablesModules();
+                SetColumnModules();
+
+            }
         }
 
         public void SetConnectedTablesModules()
@@ -223,7 +227,8 @@ namespace QueryMaker
             {
                 conn.Open();
 
-                string sql = $"SELECT `COLUMN_NAME`, `DATA_TYPE` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = '{DataBaseName}' AND `TABLE_NAME`=@table;";
+                string sql = $"SELECT `COLUMN_NAME`, `DATA_TYPE` FROM `INFORMATION_SCHEMA`.`COLUMNS`" +
+                             $" WHERE `TABLE_SCHEMA` = '{DataBaseName}' AND `TABLE_NAME`=@table;";
                 MySqlCommand cmd;
                 MySqlDataReader rdr;
                 foreach (string table in tableNames)

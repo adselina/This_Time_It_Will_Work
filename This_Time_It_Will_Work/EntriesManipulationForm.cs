@@ -31,6 +31,7 @@ namespace This_Time_It_Will_Work
             InitializeComponent();
             currentDB = name;
             FillListTables();
+            dataGridView.Enabled = false;
             button_delete.Enabled = false;
             button_insert.Enabled = false;
             button_select.Enabled = false;
@@ -360,6 +361,8 @@ namespace This_Time_It_Will_Work
                         data[0] = temp2;
                         temp = $"\"{data[0]}.{data[1]}.{data[2]}\"";
                     }
+                    if (dataTable.Columns[i].DataType.ToString() == "System.String")
+                        temp = $"\"{temp}\"";
                     values += $"{temp},";
                 }
                 values = values.Trim(',');
@@ -425,6 +428,9 @@ namespace This_Time_It_Will_Work
                         data[0] = temp2;
                         temp = $"\"{data[0]}.{data[1]}.{data[2]}\"";
                     }
+
+                    if (dataTable.Columns[i].DataType.ToString() == "System.String")
+                        temp = $"\"{temp}\"";
 
                     values += $"`{dataTable.Columns[i].ColumnName.Trim('*')}`={temp},";
                 }

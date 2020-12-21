@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using QueryMaker;
+
 namespace This_Time_It_Will_Work
 {
     static class Program
